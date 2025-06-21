@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>PulmoScan</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='resultStyle.css') }}"/>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <p><strong>Diagnosis:</strong> {{ label }}</p>
+    <p><strong>Confidence:</strong> {{ confidence }}</p>
+    <div style="display: flex; gap: 20px;">
+        <div>
+            <h3>Original</h3>
+            <img class="preview" onclick="this.requestFullscreen()" src="{{ original_image }}" alt="Original Image" width="300" />
+        </div>
+        <div>
+            <h3>Grad-CAM Heatmap</h3>
+            <img class="preview" onclick="this.requestFullscreen()" src="{{ heatmap_image }}" alt="Grad-CAM Heatmap" width="300" />
+        </div>
+        <div>
+            <h3>Overlay</h3>
+            <img class="preview" onclick="this.requestFullscreen()" src="{{ overlay_image }}" alt="Overlay Image" width="300" />
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}">Back to Upload</a>
+</body>
+</html>

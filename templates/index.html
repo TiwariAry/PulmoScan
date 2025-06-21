@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>PulmoScan</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='indexStyle.css') }}"/>
+</head>
+<body>
+
+<h1>Pneumonia Detection</h1>
+<p>Please upload a chest X-ray image for prediction</p>
+
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*" required onchange="previewImage(event)"/>
+    <br/>
+    <button type="submit">Predict</button>
+    <br/>
+    <img id="preview" onclick="this.requestFullscreen()" style="display:none;" alt="Uploaded image"/>
+</form>
+
+<script>
+    function previewImage(event) {
+      const preview = document.getElementById('preview');
+      const file = event.target.files[0];
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      }
+    }
+</script>
+
+</body>
+</html>
