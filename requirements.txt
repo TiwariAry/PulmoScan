@@ -1,5 +1,5 @@
-Flask
-tensorflow
+Flask==2.3.3
+tensorflow==2.13.0
 opencv-python-headless
 numpy
 Pillow
