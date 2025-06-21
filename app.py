@@ -107,5 +107,7 @@ def result(filename):
                           )
 
 if __name__ == '__main__':
+    import os
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host="0.0.0.0", port=port, debug=False)
