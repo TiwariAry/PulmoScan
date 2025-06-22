@@ -3,9 +3,6 @@ import os
 import numpy as np
 import tensorflow as tf
 import cv2
-from werkzeug.utils import secure_filename
-import threading
-import time
 from PIL import Image
 
 app = Flask(__name__)

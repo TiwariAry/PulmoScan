@@ -1,0 +1,35 @@
+# Use a base image with Python
+FROM python:3.9-slim-buster
+
+# Set environment variables for non-interactive installs
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Create a non-root user for security
+RUN useradd -m -u 1000 user
+USER user
+ENV PATH="/home/user/.local/bin:$PATH"
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy requirements.txt and install dependencies
+COPY --chown=user:user ./requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of your application code
+COPY --chown=user:user . .
+
+# Ensure the model directory exists and has correct permissions if needed
+# (Though COPY --chown=user:user . . should handle most cases)
+RUN if [ -d "model" ]; then \
+        chmod -R 755 saved_model/my_model; \
+    fi
+
+# Expose the port that Hugging Face Spaces expects
+EXPOSE 7860
+
+# Command to run your Flask app with Gunicorn
+# 'app:app' means 'app' is the module (app.py) and 'app' is the Flask instance
+CMD ["gunicorn", "--bind", "0.0.0.0:7860", "app:app", "--workers", "1"]
+# You might increase --workers if your app handles many concurrent requests
+# and has enough memory, but start with 1 for initial deployment.
