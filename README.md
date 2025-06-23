@@ -94,6 +94,7 @@ The results page displays:
 - Grad-CAM heatmap
 - Overlay image
 - Predicted label and confidence
+
 Users can visually interpret the model's focus regions in its diagnosis.
 
 ---
