@@ -10,7 +10,7 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 # Load your trained model once when app starts
 model = tf.keras.models.load_model('model_compatable.h5')
-last_conv_layer_name = 'Conv_1'  # MobileNetV2 last conv layer, adjust if different
+last_conv_layer_name = 'Conv_1'  # MobileNetV2 last conv layer
 
 def generate_gradcam(img_path, model, last_conv_layer_name):
     # Load and preprocess image
