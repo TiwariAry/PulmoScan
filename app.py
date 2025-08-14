@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-import os
 import numpy as np
 import tensorflow as tf
 import cv2
-from PIL import Image
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
